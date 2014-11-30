@@ -203,7 +203,7 @@
         var biosfile = DEBUG ? "seabios-debug.bin" : "seabios.bin";
         var vgabiosfile = DEBUG ? "vgabios-0.7a.debug.bin" : "bochs-vgabios-0.7a.bin";
 
-        load_file("bios/" + biosfile, function(img)
+        load_file("/bios/" + biosfile, function(img)
         {
             settings.bios = img;
 
@@ -211,7 +211,7 @@
         });
 
         //load_file("bios/vgabios.bin", function(img)
-        load_file("bios/" + vgabiosfile, function(img)
+        load_file("/bios/" + vgabiosfile, function(img)
         {
             settings.vga_bios = img;
 
@@ -295,7 +295,7 @@
             },
             {
                 id: "windows1",
-                fda: "images/windows101.img",
+                fda: "/images/windows101.img",
                 size: 1474560,
                 name: "Windows",
             },
@@ -446,7 +446,7 @@
             settings.memory_size = 128 * 1024 * 1024;
             settings.vga_memory_size = 128 * 1024 * 1024;
 
-            load_file("images/v86state.bin", function(buffer)
+            load_file("/images/v86state.bin", function(buffer)
             {
                 init(settings, function(cpu)
                 {

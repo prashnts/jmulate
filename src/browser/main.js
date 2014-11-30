@@ -175,31 +175,6 @@
             loader.load();
         }
 
-        $("toggle_mouse").onclick = function()
-        {
-            var mouse_adapter = settings.mouse_adapter;
-
-            if(mouse_adapter)
-            {
-                var state = mouse_adapter.emu_enabled = !mouse_adapter.emu_enabled;
-
-                $("toggle_mouse").value = (state ? "Dis" : "En") + "able mouse";
-            }
-        };
-
-        $("lock_mouse").onclick = function()
-        {
-            var mouse_adapter = settings.mouse_adapter;
-
-            if(mouse_adapter && !mouse_adapter.emu_enabled)
-            {
-                $("toggle_mouse").onclick();
-            }
-
-            lock_mouse(document.body);
-            $("lock_mouse").blur();
-        };
-
         var biosfile = DEBUG ? "seabios-debug.bin" : "seabios.bin";
         var vgabiosfile = DEBUG ? "vgabios-0.7a.debug.bin" : "bochs-vgabios-0.7a.bin";
 
@@ -275,21 +250,8 @@
 
         var oses = [
             {
-                id: "archlinux",
-                state: "http://localhost/v86-images/v86state.bin",
-                //state: "http://104.131.53.7:8086/v86state.bin",
-                size: 137 * 1024 * 1024,
-                name: "Arch Linux",
-                memory_size: 256 * 1024 * 1024,
-                //memory_size: 64 * 1024 * 1024,
-                vga_memory_size: 8 * 1024 * 1024,
-                async_hda: "http://localhost/v86-images/arch3.img",
-                //async_hda: "http://104.131.53.7:8086/arch3.img", 
-                async_hda_size: 8589934592,
-            },
-            {
                 id: "freedos",
-                fda: "images/freedos722.img",
+                fda: "/images/freedos722.img",
                 size: 737280,
                 name: "FreeDOS",
             },
@@ -301,34 +263,10 @@
             },
             {
                 id: "linux26",
-                cdrom: "images/linux.iso",
+                cdrom: "/images/linux.iso",
                 size: 5666816,
                 name: "Linux",
-            },
-            //{
-            //    id: "nanolinux",
-            //    cdrom: "images/nanolinux-1.2.iso",
-            //    size: 14047232,
-            //    name: "Nanolinux",
-            //},
-            {
-                id: "kolibrios",
-                fda: "images/kolibri.img",
-                size: 1474560,
-                name: "KolibriOS",
-            },
-            {
-                id: "openbsd",
-                fda: "images/openbsd.img",
-                size: 1474560,
-                name: "OpenBSD",
-            },
-            {
-                id: "solos",
-                fda: "images/os8.dsk",
-                size: 1474560,
-                name: "Sol OS",
-            },
+            }
         ];
 
         var profile = get_query_arguments().profile;
@@ -534,7 +472,7 @@
         settings.mouse_adapter = new MouseAdapter();
 
         settings.boot_order = parseInt($("boot_order").value, 16);
-        settings.serial_adapter = new SerialAdapter($("serial"));
+        //settings.serial_adapter = new SerialAdapter($("serial"));
         //settings.serial_adapter = new ModemAdapter();
         //settings.network_adapter = new NetworkAdapter("ws://localhost:8001/");
         //settings.network_adapter = new NetworkAdapter("ws://relay.widgetry.org/");
@@ -578,13 +516,7 @@
         $("boot_options").style.display = "none";
         $("loading").style.display = "none";
         $("runtime_options").style.display = "block";
-        $("runtime_infos").style.display = "block";
-        document.getElementsByClassName("phone_keyboard")[0].style.display = "block";
-
-        if($("news")) 
-        {
-            $("news").style.display = "none";
-        }
+        document.getElementsByClassName("phone_keyboard")[0].style.display = "none";
 
         var running = true;
 
@@ -656,49 +588,13 @@
 
             if(vga_stats.is_graphical)
             {
-                $("info_vga_mode").textContent = "graphical";
+                $("info_vga_mode").textContent = "Graphical";
                 $("info_res").textContent = vga_stats.res_x + "x" + vga_stats.res_y;
-                $("info_bpp").textContent = vga_stats.bpp;
             }
             else
             {
-                $("info_vga_mode").textContent = "text";
-                $("info_res").textContent = "-";
-                $("info_bpp").textContent = "-";
-            }
-
-            if(settings.mouse_adapter)
-            {
-                $("info_mouse_enabled").textContent = settings.mouse_adapter.enabled ? "Yes" : "No";
-            }
-
-            if(cpu.devices.hda)
-            {
-                var hda_stats = cpu.devices.hda.stats;
-
-                $("info_hda_sectors_read").textContent = hda_stats.sectors_read;
-                $("info_hda_bytes_read").textContent = hda_stats.bytes_read;
-
-                $("info_hda_sectors_written").textContent = hda_stats.sectors_written;
-                $("info_hda_bytes_written").textContent = hda_stats.bytes_written;
-                $("info_hda_status").textContent = hda_stats.loading ? "Loading ..." : "Idle";
-            }
-            else
-            {
-                $("info_hda").style.display = "none";
-            }
-
-            if(cpu.devices.cdrom)
-            {
-                var cdrom_stats = cpu.devices.cdrom.stats;
-
-                $("info_cdrom_sectors_read").textContent = cdrom_stats.sectors_read;
-                $("info_cdrom_bytes_read").textContent = cdrom_stats.bytes_read;
-                $("info_cdrom_status").textContent = cdrom_stats.loading ? "Loading ..." : "Idle";
-            }
-            else
-            {
-                $("info_cdrom").style.display = "none";
+                $("info_vga_mode").textContent = "Terminal";
+                $("info_res").textContent = "";
             }
 
             setTimeout(update_other_info, 1000);
@@ -706,12 +602,6 @@
 
         setTimeout(update_info, 1000);
         setTimeout(update_other_info, 0);
-
-        $("reset").onclick = function()
-        {
-            cpu.restart();
-            $("reset").blur();
-        };
 
         // writable image types
         var image_types = ["hda", "hdb", "fda", "fdb"];
@@ -756,7 +646,7 @@
             $("ctrlaltdel").blur();
         };
 
-        $("scale").onchange = function()
+        /*$("scale").onchange = function()
         {
             var n = parseFloat(this.value);
 
@@ -764,7 +654,7 @@
             {
                 settings.screen_adapter.set_scale(n, n);
             }
-        };
+        };*/
 
         $("fullscreen").onclick = function()
         {
@@ -803,11 +693,6 @@
 
             $("take_screenshot").blur();
         };
-
-        if(settings.serial_adapter)
-        {
-            $("serial").style.display = "block";
-        }
 
         window.addEventListener("keydown", ctrl_w_rescue, false);
         window.addEventListener("keyup", ctrl_w_rescue, false);

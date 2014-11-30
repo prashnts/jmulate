@@ -13,9 +13,11 @@ body {
   width: 100%; }
   .esy img {
     max-width: 100%; }
+  .esy #screen_container {
+    background: #000; }
   .esy .controller {
     background: #07141F;
-    position: absolute;
+    position: fixed;
     width: 100%;
     bottom: 0; }
     .esy .controller img {
@@ -31,12 +33,14 @@ body {
     .esy .controller .logo {
       float: left;
       height: 58px;
+      opacity: 1;
       padding: 0 10px 0 10px; }
     .esy .controller .left {
       float: left;
       line-height: 40px; }
     .esy .controller .right {
-      float: right; }
+      float: right;
+      display: none; }
     .esy .controller .left, .esy .controller .right {
       color: #FFFFFF;
       font-weight: 100;

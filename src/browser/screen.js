@@ -136,6 +136,7 @@ function ScreenAdapter(screen_container)
     cursor_element.style.display = "inline-block";
 
     text_screen.style.display = "block";
+    text_screen.style.backgroundColor = "#000";     //PS
     graphic_screen.style.display = "none";
 
     this.init = function()

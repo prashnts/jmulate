@@ -33,9 +33,12 @@ body
     img
         max-width:  100%
 
+    #screen_container
+        background: #000
+
     .controller
         background: #07141F
-        position:   absolute
+        position:   fixed
         width:      100%
         bottom:     0
 
@@ -49,6 +52,7 @@ body
         .logo
             float: left
             height: 58px
+            opacity: 1
             padding: 0 10px 0 10px
 
         .left
@@ -56,6 +60,7 @@ body
             line-height:    40px
         .right
             float: right
+            display: none
 
         .left, .right
             color:              #FFFFFF

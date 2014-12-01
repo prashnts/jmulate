@@ -5,7 +5,7 @@ html, body {
   position: relative; }
 
 body {
-  background: #000000; }
+  background: #151718; }
 
 .esy {
   height: 100%;
@@ -14,7 +14,7 @@ body {
   .esy img {
     max-width: 100%; }
   .esy .boot {
-    height: 100%;
+    hesight: 100%;
     width: 100%;
     text-align: center;
     color: #FFFFFF;
@@ -81,13 +81,18 @@ body {
           background-image: linear-gradient(-180deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%); }
         .esy .boot .row .left span:after, .esy .boot .row .right span:after {
           content: "MB"; }
+      .esy .boot .row .left select, .esy .boot .row .right select {
+        padding: 10px;
+        font-weight: 200; }
+      .esy .boot .row .left button, .esy .boot .row .right button {
+        text-align: left; }
       .esy .boot .row .left .hide, .esy .boot .row .right .hide {
         display: none; }
       .esy .boot .row .left ul, .esy .boot .row .right ul {
         list-style-type: none;
         padding: 0; }
   .esy #screen_container {
-    background: #000; }
+    background: #151718; }
   .esy .controller {
     background: #07141F;
     position: fixed;

@@ -92,7 +92,7 @@
         // Removed this method. PS
         return;
 
-        var el = $("loading");
+        var el = _("loading");
         el.style.display = "block";
 
         if(e.lengthComputable || (info.total && typeof e.loaded === "number"))
@@ -114,7 +114,7 @@
         }
     }
 
-    function $(id)
+    function _(id)
     {
         if(!document.getElementById(id))
             console.log("Element with id `" + id + "` not found");
@@ -196,32 +196,32 @@
             if(on_bios_load) on_bios_load();
         });
 
-        $("start_emulation").onclick = function()
+        _("start_emulation").onclick = function()
         {
-            $("boot_options").style.display = "none";
+            _("boot_options").style.display = "none";
 
             var images = [];
 
-            if($("floppy_image").files.length)
+            if(_("floppy_image").files.length)
             {
                 images.push({
-                    file: $("floppy_image").files[0],
+                    file: _("floppy_image").files[0],
                     type: "floppy",
                 });
             }
 
-            if($("cd_image").files.length)
+            if(_("cd_image").files.length)
             {
                 images.push({
-                    file: $("cd_image").files[0],
+                    file: _("cd_image").files[0],
                     type: "cdrom",
                 });
             }
 
-            if($("hd_image").files.length)
+            if(_("hd_image").files.length)
             {
                 images.push({
-                    file: $("hd_image").files[0],
+                    file: _("hd_image").files[0],
                     type: "hd",
                 });
             }
@@ -279,7 +279,7 @@
             var infos = oses[i];
             var dom_id = "start_" + infos.id;
 
-            $(dom_id).onclick = function(infos)
+            _(dom_id).onclick = function(infos)
             {
                 var message = { msg: "Downloading image", total: infos.size };
                 var image = infos.state || infos.fda || infos.cdrom;
@@ -306,14 +306,14 @@
                 }
 
                 set_title(infos.name);
-                $(dom_id).blur();
-                $("boot_options").style.display = "none";
+                _(dom_id).blur();
+                _("boot_options").style.display = "none";
 
             }.bind(this, infos);
 
             if(profile === infos.id)
             {
-                $(dom_id).onclick();
+                _(dom_id).onclick();
                 return;
             }
         }
@@ -357,9 +357,9 @@
     {
         // called on window.onload, in debug mode
 
-        $("restore_state").onchange = function()
+        _("restore_state").onchange = function()
         {
-            var file = $("restore_state").files[0];
+            var file = _("restore_state").files[0];
 
             if(!file)
             {
@@ -381,7 +381,7 @@
             fr.readAsArrayBuffer(file);
         };
 
-        $("start_test").onclick = function()
+        _("start_test").onclick = function()
         {
             //settings.hda = new AsyncXHRBuffer("http://localhost:8000/images/arch3.img", 512, 8589934592);
             settings.memory_size = 128 * 1024 * 1024;
@@ -470,19 +470,19 @@
         // avoid warnings
         settings.fdb = undefined;
 
-        settings.screen_adapter = new ScreenAdapter($("screen_container"));;
+        settings.screen_adapter = new ScreenAdapter(_("screen_container"));;
         settings.keyboard_adapter = new KeyboardAdapter();
         settings.mouse_adapter = new MouseAdapter();
 
-        settings.boot_order = parseInt($("boot_order").value, 16);
-        //settings.serial_adapter = new SerialAdapter($("serial"));
+        settings.boot_order = parseInt(_("boot_order").value, 16);
+        //settings.serial_adapter = new SerialAdapter(_("serial"));
         //settings.serial_adapter = new ModemAdapter();
         //settings.network_adapter = new NetworkAdapter("ws://localhost:8001/");
         //settings.network_adapter = new NetworkAdapter("ws://relay.widgetry.org/");
 
         if(!settings.memory_size)
         {
-            var memory_size = parseInt($("memory_size").value, 10) * 1024 * 1024;
+            var memory_size = parseInt(_("memory_size").value, 10) * 1024 * 1024;
             if(memory_size >= 16 * 1024 * 1024 && memory_size < 2048 * 1024 * 1024)
             {
                 settings.memory_size = memory_size;
@@ -496,7 +496,7 @@
 
         if(!settings.vga_memory_size)
         {
-            var video_memory_size = parseInt($("video_memory_size").value, 10) * 1024 * 1024;
+            var video_memory_size = parseInt(_("video_memory_size").value, 10) * 1024 * 1024;
             if(video_memory_size > 64 * 1024 && video_memory_size < 2048 * 1024 * 1024)
             {
                 settings.vga_memory_size = video_memory_size;
@@ -516,40 +516,40 @@
 
     function init_ui(settings, cpu)
     {
-        $("boot_options").style.display = "none";
-        //$("loading").style.display = "none";
-        $("runtime_options").style.display = "block";
+        _("boot_options").style.display = "none";
+        //_("loading").style.display = "none";
+        _("runtime_options").style.display = "block";
         document.getElementsByClassName("phone_keyboard")[0].style.display = "none";
 
         var running = true;
 
-        $("run").onclick = function()
+        _("run").onclick = function()
         {
             if(running)
             {
                 running_time += Date.now() - last_tick;
-                $("run").value = "Run";
+                _("run").value = "Run";
                 cpu.stop();
             }
             else
             {
-                $("run").value = "Pause";
+                _("run").value = "Pause";
                 cpu.run();
                 last_tick = Date.now();
             }
 
             running = !running;
-            $("run").blur();
+            _("run").blur();
         };
 
-        $("exit").onclick = function()
+        _("exit").onclick = function()
         {
             location.href = location.pathname;
         };
 
-        var time = $("running_time"),
-            ips = $("speed"),
-            avg_ips = $("avg_speed"),
+        var time = _("running_time"),
+            ips = _("speed"),
+            avg_ips = _("avg_speed"),
             last_tick = Date.now(),
             running_time = 0,
             summed_ips = 0,
@@ -591,13 +591,13 @@
 
             if(vga_stats.is_graphical)
             {
-                $("info_vga_mode").textContent = "Graphical";
-                $("info_res").textContent = vga_stats.res_x + "x" + vga_stats.res_y;
+                _("info_vga_mode").textContent = "Graphical";
+                _("info_res").textContent = vga_stats.res_x + "x" + vga_stats.res_y;
             }
             else
             {
-                $("info_vga_mode").textContent = "Terminal";
-                $("info_res").textContent = "";
+                _("info_vga_mode").textContent = "Terminal";
+                _("info_res").textContent = "";
             }
 
             setTimeout(update_other_info, 1000);
@@ -611,7 +611,7 @@
 
         for(var i = 0; i < image_types.length; i++)
         {
-            var elem = $("get_" + image_types[i] + "_image");
+            var elem = _("get_" + image_types[i] + "_image");
             var obj = settings[image_types[i]];
 
             if(obj && obj.byteLength < 16 * 1024 * 1024)
@@ -633,7 +633,7 @@
             }
         }
 
-        $("ctrlaltdel").onclick = function()
+        _("ctrlaltdel").onclick = function()
         {
             var ps2 = cpu.devices.ps2;
 
@@ -646,10 +646,10 @@
             ps2.kbd_send_code(0x38 | 0x80);
             ps2.kbd_send_code(0x53 | 0x80);
 
-            $("ctrlaltdel").blur();
+            _("ctrlaltdel").blur();
         };
 
-        /*$("scale").onchange = function()
+        /*_("scale").onchange = function()
         {
             var n = parseFloat(this.value);
 
@@ -659,7 +659,7 @@
             }
         };*/
 
-        $("fullscreen").onclick = function()
+        _("fullscreen").onclick = function()
         {
             var elem = document.getElementById("screen_container"),
 
@@ -681,7 +681,7 @@
             lock_mouse(elem);
         };
 
-        $("screen_container").onclick = function()
+        _("screen_container").onclick = function()
         {
             // allow text selection
             if(window.getSelection().isCollapsed)
@@ -690,11 +690,11 @@
             }
         };
 
-        $("take_screenshot").onclick = function()
+        _("take_screenshot").onclick = function()
         {
             settings.screen_adapter.make_screenshot();
 
-            $("take_screenshot").blur();
+            _("take_screenshot").blur();
         };
 
         window.addEventListener("keydown", ctrl_w_rescue, false);
@@ -723,25 +723,25 @@
         // called as soon as soon as emulation is started, in debug mode
         var debug = cpu.debug;
 
-        $("step").onclick = debug.step.bind(debug);
-        $("run_until").onclick = debug.run_until.bind(debug);
-        $("debugger").onclick = debug.debugger.bind(debug);
-        $("dump_gdt").onclick = debug.dump_gdt_ldt.bind(debug);
-        $("dump_idt").onclick = debug.dump_idt.bind(debug);
-        $("dump_regs").onclick = debug.dump_regs.bind(debug);
-        $("dump_pt").onclick = debug.dump_page_directory.bind(debug);
-        $("dump_instructions").onclick = debug.dump_instructions.bind(debug);
+        _("step").onclick = debug.step.bind(debug);
+        _("run_until").onclick = debug.run_until.bind(debug);
+        _("debugger").onclick = debug.debugger.bind(debug);
+        _("dump_gdt").onclick = debug.dump_gdt_ldt.bind(debug);
+        _("dump_idt").onclick = debug.dump_idt.bind(debug);
+        _("dump_regs").onclick = debug.dump_regs.bind(debug);
+        _("dump_pt").onclick = debug.dump_page_directory.bind(debug);
+        _("dump_instructions").onclick = debug.dump_instructions.bind(debug);
 
-        $("memory_dump").onclick = function()
+        _("memory_dump").onclick = function()
         {
             dump_file(debug.get_memory_dump(), "v86-memory.bin");
-            $("memory_dump").blur();
+            _("memory_dump").blur();
         };
 
-        $("save_state").onclick = function()
+        _("save_state").onclick = function()
         {
             dump_file(cpu.save_state(), "v86-state.bin");
-            $("save_state").blur();
+            _("save_state").blur();
         };
 
         window.cpu = cpu;

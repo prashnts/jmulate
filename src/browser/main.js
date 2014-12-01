@@ -89,6 +89,9 @@
 
     function show_progress(info, e)
     {
+        // Removed this method. PS
+        return;
+
         var el = $("loading");
         el.style.display = "block";
 
@@ -514,7 +517,7 @@
     function init_ui(settings, cpu)
     {
         $("boot_options").style.display = "none";
-        $("loading").style.display = "none";
+        //$("loading").style.display = "none";
         $("runtime_options").style.display = "block";
         document.getElementsByClassName("phone_keyboard")[0].style.display = "none";
 

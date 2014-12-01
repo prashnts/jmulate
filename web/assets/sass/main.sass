@@ -7,7 +7,7 @@
 
 
 $source-sans:       "Source Sans Pro"
-$background:        #FFFFFF
+$background:        #000000
 
 $header-background: #010712
 
@@ -33,6 +33,96 @@ body
     img
         max-width:  100%
 
+    .boot
+        height:     100%
+        width:      100%
+        text-align: center
+        color:      #FFFFFF
+        font-weight: 100
+        .logo
+            height: 60px
+
+        .row
+            position:   relative
+            width:      100%
+
+            .left
+                padding:        0 20px 0 0
+                position:       absolute
+                text-align:     right
+                right:          50%
+
+            .right
+                display: inline-block
+                min-width: 100px
+                padding:        0 0 0 20px
+                position:       absolute
+                left:           50%
+                text-align:     left
+
+
+
+            .left, .right
+                input[type='button'], label, span, select, button
+                    border: medium none
+                    cursor: pointer
+                    display: inline-block
+                    font-weight: 100
+                    padding: 10px
+                    font-size: 14px
+                    border-radius: 3px
+                    margin: 5px 0 0 0
+                    color: #FFFFFF
+                    min-width: 200px
+                    text-align: right
+
+                    background-image: -o-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
+                    background-image: -moz-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
+                    background-image: -ms-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
+                    background-image: linear-gradient(-180deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
+
+                    &:hover, &:focus
+                        outline: none
+                        background-image: -o-linear-gradient(-90deg, #3682B7 0%, #3682B7 91%, #2E3F4F 91%, #2E3F4F 100%)
+                        background-image: -moz-linear-gradient(-90deg, #3682B7 0%, #3682B7 91%, #2E3F4F 91%, #2E3F4F 100%)
+                        background-image: -ms-linear-gradient(-90deg, #3682B7 0%, #3682B7 91%, #2E3F4F 91%, #2E3F4F 100%)
+                        background-image: linear-gradient(-180deg, #3682B7 0%, #3682B7 91%, #2E3F4F 91%, #2E3F4F 100%)
+
+                label
+                    min-width: 100px
+                    text-align: center
+
+                    &:before
+                        content: ""
+
+                span
+                    text-align:     center
+                    cursor:     text
+                    min-width:      50px
+                    input[type='number']
+                        text-align: center
+                        background: transparent
+                        border:     none
+                        font-size:  14px
+                        color:      #FFFFFF
+                        font-weight: 200
+
+                    &:hover
+                        background-image: -o-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
+                        background-image: -moz-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
+                        background-image: -ms-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
+                        background-image: linear-gradient(-180deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
+
+                    &:after
+                        content: "MB"
+
+                .hide
+                    display: none//: hidden
+
+                ul
+                    list-style-type: none
+                    padding:            0
+
     #screen_container
         background: #000
 
@@ -41,6 +131,9 @@ body
         position:   fixed
         width:      100%
         bottom:     0
+
+        div
+            display: none
 
         img
             height:     35px
@@ -51,7 +144,7 @@ body
 
         .logo
             float: left
-            height: 58px
+            height: 60px
             opacity: 1
             padding: 0 10px 0 10px
 
@@ -60,7 +153,6 @@ body
             line-height:    40px
         .right
             float: right
-            display: none
 
         .left, .right
             color:              #FFFFFF

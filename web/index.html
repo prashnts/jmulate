@@ -13,88 +13,64 @@
 </head>
 <body class="esy">
 
+    <div class="boot">
+        <img src="/web/assets/img/logo.head.png" class="logo">
+        <div class="row" id="boot_options">
+            <div class="left">
+                <h4>Quickstart</h4>
+                <ul>
+                    <li><input type="button" value="Linux 2.6 (5.4 MB)" id="start_linux26"></li>
+                    <li><input type="button" value="Windows 1.01 (1.4 MB)" id="start_windows1"></li>
+                    <li><input type="button" value="FreeDOS (0.7 MB)" id="start_freedos"></li>
+                </ul>
+            </div>
+            <div class="right">
+                <h4>Manual Setup</h4>
+                <ul>
+                    <li>Step 1: Choose the Boot Device</li>
+                    <li>
+                        <input type="file" id="cd_image" class="hide">
+                        <label for="cd_image">CD Image (ISO)</label>
 
+                        <input type="file" id="floppy_image" class="hide">
+                        <label for="floppy_image">Floppy Image</label>
 
-<div>
-    <div id="boot_options">
-        <h4>Quickstart</h4>
+                        <input type="file" id="hd_image" class="hide">
+                        <label for="hd_image">HDD Image</label>
+                    </li>
+                    <li>Step 2: Choose the Specs</li>
 
-        <input type="button" value="Linux 2.6 (5.4 MB)" id="start_linux26"> 
-        - With busybox, lua interpreter and test cases, takes about 20 seconds to boot<br>
-        <input type="button" value="Windows 1.01 (1.4 MB)" id="start_windows1"> 
-        - Takes 1 second to boot<br>
-        <input type="button" value="FreeDOS (0.7 MB)" id="start_freedos"> 
-        - With nasm, vim, debug.com, some games and demos, takes 1 second to boot
-        <h4>Setup</h4>
-        <table>
-            <tr>
-                <td width="250">CD image</td>
-                <td> 
-                    <!--
-                    <select>
-                        <option>None</option>
-                        <option>Local file</option>
-                        <option>External Server</option>
-                    </select>-->
-                    <input type="file" id="cd_image">
-                </td>
-            </tr>
+                    <li>
+                        <span>
+                            RAM:
+                            <input id="memory_size" type="number" value="64" min="16" max="2048" step="16">
+                        </span>
+                        <span>
+                            GPU:
+                            <input id="video_memory_size" type="number" value="8" min="1" max="128" step="1">
+                        </span>
+                        
+                    </li>
 
-            <tr>
-                <td>Floppy disk image</td>
-                <td> <input type="file" id="floppy_image"><br></td>
-            </tr>
+                    <li>Optional: Choose Boot Order</li>
 
-            <tr>
-                <td>Hard drive disk image</td>
-                <td><input type="file" id="hd_image"><br></td>
-            </tr>
-
-            <tr>
-                <td colspan="2"><hr></td>
-            </tr>
-
-            <tr>
-                <td>Memory size</td>
-                <td>
-                    <input id="memory_size" type="number" value="64" min="16" max="2048" step="16"> MB<br>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Video Memory size</td>
-                <td>
-                    <input id="video_memory_size" type="number" value="8" min="1" max="128" step="1"> MB<br>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2"><hr></td>
-            </tr>
-
-            <tr>
-                <td>Boot order</td>
-                <td> 
-                    <select id="boot_order">
-                        <option value="213">CD / Floppy / Hard Disk</option>
-                        <option value="123">CD / Hard Disk / Floppy</option>
-                        <option value="231">Floppy / CD / Hard Disk</option>
-                        <option value="321">Floppy / Hard Disk / CD</option>
-                        <option value="312">Hard Disk / Floppy / CD</option>
-                        <option value="132">Hard Disk / CD / Floppy</option>
-                    </select>
-                 </td>
-            </tr>
-        </table>
-
-        <br>
-        <button id="start_emulation">Start Emulation</button>
+                    <li>
+                        <select id="boot_order">
+                            <option value="213">CD / Floppy / Hard Disk</option>
+                            <option value="123">CD / Hard Disk / Floppy</option>
+                            <option value="231">Floppy / CD / Hard Disk</option>
+                            <option value="321">Floppy / Hard Disk / CD</option>
+                            <option value="312">Hard Disk / Floppy / CD</option>
+                            <option value="132">Hard Disk / CD / Floppy</option>
+                        </select>
+                    </li>
+                    <li><button id="start_emulation">Start Emulation</button></li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <pre style="display: none" id="loading"></pre>
-</div>
 
-
-<div id="screen_container">
+<div id="screen_container"  style="dissplay:none">
     <div id="screen"></div>
     <canvas id="vga"></canvas>
 </div>
@@ -102,13 +78,14 @@
 <input type="text" class="phone_keyboard" style="display: none">
     <div class="controller">
         <img src="/web/assets/img/logo.small.png" class="logo">
+        <div id="runtime_options">
         <ul class="left">
             <li>Running: <span id="running_time">0s</span></li>
             <li>Speed: <span id="speed">0</span>kIPS <span id="avg_speed">0</span> akIPS</li>
             <li><span id="info_res"></span></li>
             <li><span id="info_vga_mode"></span></li>
         </ul>
-        <ul class="right" id="runtime_options">
+        <ul class="right">
             <li id="take_screenshot"><img src="/web/assets/img/icon.screenshot.png"></li>
             <li id="get_fda_image"><img src="/web/assets/img/icon.save.png"></li>
             <li id="get_fdb_image"><img src="/web/assets/img/icon.save.png"></li>
@@ -119,6 +96,7 @@
             <li id="exit"><img src="/web/assets/img/icon.off.png"></li>
             <li id="fullscreen"><img src="/web/assets/img/icon.fullscreen.png"></li>
         </ul>
+        </div>
     </div>
 </body>
 </html>

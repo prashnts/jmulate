@@ -5,7 +5,7 @@ html, body {
   position: relative; }
 
 body {
-  background: #FFFFFF; }
+  background: #000000; }
 
 .esy {
   height: 100%;
@@ -13,6 +13,79 @@ body {
   width: 100%; }
   .esy img {
     max-width: 100%; }
+  .esy .boot {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: 100; }
+    .esy .boot .logo {
+      height: 60px; }
+    .esy .boot .row {
+      position: relative;
+      width: 100%; }
+      .esy .boot .row .left {
+        padding: 0 20px 0 0;
+        position: absolute;
+        text-align: right;
+        right: 50%; }
+      .esy .boot .row .right {
+        display: inline-block;
+        min-width: 100px;
+        padding: 0 0 0 20px;
+        position: absolute;
+        left: 50%;
+        text-align: left; }
+      .esy .boot .row .left input[type='button'], .esy .boot .row .left label, .esy .boot .row .left span, .esy .boot .row .left select, .esy .boot .row .left button, .esy .boot .row .right input[type='button'], .esy .boot .row .right label, .esy .boot .row .right span, .esy .boot .row .right select, .esy .boot .row .right button {
+        border: medium none;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 100;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 3px;
+        margin: 5px 0 0 0;
+        color: #FFFFFF;
+        min-width: 200px;
+        text-align: right;
+        background-image: -o-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%);
+        background-image: -moz-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%);
+        background-image: -ms-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%);
+        background-image: linear-gradient(-180deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%); }
+        .esy .boot .row .left input[type='button']:hover, .esy .boot .row .left input[type='button']:focus, .esy .boot .row .left label:hover, .esy .boot .row .left label:focus, .esy .boot .row .left span:hover, .esy .boot .row .left span:focus, .esy .boot .row .left select:hover, .esy .boot .row .left select:focus, .esy .boot .row .left button:hover, .esy .boot .row .left button:focus, .esy .boot .row .right input[type='button']:hover, .esy .boot .row .right input[type='button']:focus, .esy .boot .row .right label:hover, .esy .boot .row .right label:focus, .esy .boot .row .right span:hover, .esy .boot .row .right span:focus, .esy .boot .row .right select:hover, .esy .boot .row .right select:focus, .esy .boot .row .right button:hover, .esy .boot .row .right button:focus {
+          outline: none;
+          background-image: -o-linear-gradient(-90deg, #3682B7 0%, #3682B7 91%, #2E3F4F 91%, #2E3F4F 100%);
+          background-image: -moz-linear-gradient(-90deg, #3682B7 0%, #3682B7 91%, #2E3F4F 91%, #2E3F4F 100%);
+          background-image: -ms-linear-gradient(-90deg, #3682B7 0%, #3682B7 91%, #2E3F4F 91%, #2E3F4F 100%);
+          background-image: linear-gradient(-180deg, #3682B7 0%, #3682B7 91%, #2E3F4F 91%, #2E3F4F 100%); }
+      .esy .boot .row .left label, .esy .boot .row .right label {
+        min-width: 100px;
+        text-align: center; }
+        .esy .boot .row .left label:before, .esy .boot .row .right label:before {
+          content: ""; }
+      .esy .boot .row .left span, .esy .boot .row .right span {
+        text-align: center;
+        cursor: text;
+        min-width: 50px; }
+        .esy .boot .row .left span input[type='number'], .esy .boot .row .right span input[type='number'] {
+          text-align: center;
+          background: transparent;
+          border: none;
+          font-size: 14px;
+          color: #FFFFFF;
+          font-weight: 200; }
+        .esy .boot .row .left span:hover, .esy .boot .row .right span:hover {
+          background-image: -o-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%);
+          background-image: -moz-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%);
+          background-image: -ms-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%);
+          background-image: linear-gradient(-180deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%); }
+        .esy .boot .row .left span:after, .esy .boot .row .right span:after {
+          content: "MB"; }
+      .esy .boot .row .left .hide, .esy .boot .row .right .hide {
+        display: none; }
+      .esy .boot .row .left ul, .esy .boot .row .right ul {
+        list-style-type: none;
+        padding: 0; }
   .esy #screen_container {
     background: #000; }
   .esy .controller {
@@ -20,6 +93,8 @@ body {
     position: fixed;
     width: 100%;
     bottom: 0; }
+    .esy .controller div {
+      display: none; }
     .esy .controller img {
       height: 35px;
       opacity: 0.5;
@@ -32,15 +107,14 @@ body {
       opacity: 1; }
     .esy .controller .logo {
       float: left;
-      height: 58px;
+      height: 60px;
       opacity: 1;
       padding: 0 10px 0 10px; }
     .esy .controller .left {
       float: left;
       line-height: 40px; }
     .esy .controller .right {
-      float: right;
-      display: none; }
+      float: right; }
     .esy .controller .left, .esy .controller .right {
       color: #FFFFFF;
       font-weight: 100;

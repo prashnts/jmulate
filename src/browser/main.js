@@ -42,7 +42,7 @@
 
     function set_title(text)
     {
-        document.title = text + " - Virtual x86" +  (DEBUG ? " - debug" : "");
+        document.title = text + " - Jmulate x86" +  (DEBUG ? " - debug" : "");
     }
 
     function time2str(time)
@@ -269,6 +269,10 @@
                 cdrom: "/images/linux.iso",
                 size: 5666816,
                 name: "Linux",
+            },
+            {
+                id: "damnsmall",
+                cdrom: "/images/"
             }
         ];
 

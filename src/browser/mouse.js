@@ -4,7 +4,7 @@
 function MouseAdapter()
 {
     /** @const */
-    var SPEED_FACTOR = 0.45;
+    var SPEED_FACTOR = 0.3;
 
     var left_down = false,
         right_down = false,
@@ -20,6 +20,20 @@ function MouseAdapter()
         send_delta,
 
         mouse = this;
+
+    var b = document.getElementById('vga');
+
+    console.log(b);
+
+    var findPos = function(obj) {
+        var curleft = curtop = 0;
+        if (obj.offsetParent)
+            do {
+                curleft += obj.offsetLeft;
+                curtop += obj.offsetTop;
+            } while (obj = obj.offsetParent);
+        return [curleft,curtop];
+    }
 
     // set by controller
     this.enabled = false;
@@ -49,12 +63,17 @@ function MouseAdapter()
         send_delta = delta_fn;
 
         // TODO: wheel_fn
+            console.log("init2");
 
-        window.addEventListener("mousemove", mousemove_handler, false);
+        b.addEventListener('mousemove', mousemove_handler, false );
+
+        //window.addEventListener("mousemove", mousemove_handler, false);
         document.addEventListener("contextmenu", contextmenu_handler, false);
         window.addEventListener("mousedown", mousedown_handler, false);
         window.addEventListener("mouseup", mouseup_handler, false);
     };
+
+    var delprev = [0, 0];
 
     function mousemove_handler(e)
     {
@@ -62,7 +81,7 @@ function MouseAdapter()
         {
             return;
         }
-
+        ///*
         var delta_x, delta_y;
 
         if(true)
@@ -79,6 +98,8 @@ function MouseAdapter()
             last_x = e.clientX;
             last_y = e.clientY;
         }
+        console.log([delta_x, -delta_y]);
+
 
         if(SPEED_FACTOR !== 1)
         {
@@ -90,6 +111,18 @@ function MouseAdapter()
         {
             // Large mouse delta, drop?
         }
+
+        
+        console.log("init");
+        var pos = findPos(this);
+        var delta = [(e.pageX - pos[0]), (e.pageY - pos[1])];
+
+        var deltaa = [delta[0] - delprev[0], -(delta[1] - delprev[1])];
+
+        delprev = delta;
+
+        console.log(deltaa);
+        //send_delta(delta[0], delta[1]);
 
         send_delta(delta_x, -delta_y);
     }

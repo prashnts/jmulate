@@ -34,6 +34,8 @@ body
         max-width:  100%
 
     .boot
+        position: absolute
+        top: 10%
         hesight:     100%
         width:      100%
         text-align: center
@@ -106,6 +108,8 @@ body
                         font-size:  14px
                         color:      #FFFFFF
                         font-weight: 200
+                        &:hover, &:focus
+                            outline:    none
 
                     &:hover
                         background-image: -o-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%)
@@ -130,8 +134,22 @@ body
                     list-style-type: none
                     padding:            0
 
+        .foot
+            position: absolute
+            width: 100%
+            bottom: -600%
+            p
+                margin: 2px
+                opacity: 0.2
+                a
+                    color: #FFFFFF
+                    text-decoration: none
+
     #screen_container
         background: #151718
+
+        #vga
+            cursor: none
 
     .controller
         background: #07141F
@@ -139,8 +157,7 @@ body
         width:      100%
         bottom:     0
 
-        div
-            display: none
+        display: none
 
         img
             height:     35px

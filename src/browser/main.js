@@ -272,7 +272,9 @@
             },
             {
                 id: "damnsmall",
-                cdrom: "/images/"
+                cdrom: "/images/dsl.iso",
+                size: 52824064,
+                name: "Damn Small Linux"
             }
         ];
 

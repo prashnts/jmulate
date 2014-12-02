@@ -14,6 +14,8 @@ body {
   .esy img {
     max-width: 100%; }
   .esy .boot {
+    position: absolute;
+    top: 10%;
     hesight: 100%;
     width: 100%;
     text-align: center;
@@ -74,6 +76,8 @@ body {
           font-size: 14px;
           color: #FFFFFF;
           font-weight: 200; }
+          .esy .boot .row .left span input[type='number']:hover, .esy .boot .row .left span input[type='number']:focus, .esy .boot .row .right span input[type='number']:hover, .esy .boot .row .right span input[type='number']:focus {
+            outline: none; }
         .esy .boot .row .left span:hover, .esy .boot .row .right span:hover {
           background-image: -o-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%);
           background-image: -moz-linear-gradient(-90deg, #364A5D 0%, #364A5D 91%, #2E3F4F 91%, #2E3F4F 100%);
@@ -91,15 +95,26 @@ body {
       .esy .boot .row .left ul, .esy .boot .row .right ul {
         list-style-type: none;
         padding: 0; }
+    .esy .boot .foot {
+      position: absolute;
+      width: 100%;
+      bottom: -600%; }
+      .esy .boot .foot p {
+        margin: 2px;
+        opacity: 0.2; }
+        .esy .boot .foot p a {
+          color: #FFFFFF;
+          text-decoration: none; }
   .esy #screen_container {
     background: #151718; }
+    .esy #screen_container #vga {
+      cursor: none; }
   .esy .controller {
     background: #07141F;
     position: fixed;
     width: 100%;
-    bottom: 0; }
-    .esy .controller div {
-      display: none; }
+    bottom: 0;
+    display: none; }
     .esy .controller img {
       height: 35px;
       opacity: 0.5;

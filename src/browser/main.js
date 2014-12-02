@@ -254,25 +254,25 @@
         var oses = [
             {
                 id: "freedos",
-                fda: "/images/freedos722.img",
+                fda: "images/freedos722.img",
                 size: 737280,
                 name: "FreeDOS",
             },
             {
                 id: "windows1",
-                fda: "/images/windows101.img",
+                fda: "images/windows101.img",
                 size: 1474560,
                 name: "Windows",
             },
             {
                 id: "linux26",
-                cdrom: "/images/linux.iso",
+                cdrom: "images/linux.iso",
                 size: 5666816,
                 name: "Linux",
             },
             {
                 id: "damnsmall",
-                cdrom: "/images/dsl.iso",
+                cdrom: "images/dsl.iso",
                 size: 52824064,
                 name: "Damn Small Linux"
             }

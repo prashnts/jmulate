@@ -181,7 +181,7 @@
         var biosfile = DEBUG ? "seabios-debug.bin" : "seabios.bin";
         var vgabiosfile = DEBUG ? "vgabios-0.7a.debug.bin" : "bochs-vgabios-0.7a.bin";
 
-        load_file("/bios/" + biosfile, function(img)
+        load_file("bios/" + biosfile, function(img)
         {
             settings.bios = img;
 
@@ -189,7 +189,7 @@
         });
 
         //load_file("bios/vgabios.bin", function(img)
-        load_file("/bios/" + vgabiosfile, function(img)
+        load_file("bios/" + vgabiosfile, function(img)
         {
             settings.vga_bios = img;
 

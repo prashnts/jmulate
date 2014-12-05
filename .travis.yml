@@ -3,4 +3,4 @@ jdk:
     - openjdk7
     - oraclejdk7
 
-script: make; make browser;
+script: make clean; make browser;
